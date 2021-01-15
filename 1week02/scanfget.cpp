@@ -2,7 +2,7 @@
 #include <cstdio>
 using namespace std;
 int main(){
-    int c;
+    char c;
     while (scanf("%c",&c) != EOF){
         printf("%c",c);
     }
