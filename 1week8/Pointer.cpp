@@ -71,4 +71,5 @@ int main(){
     // before_a();
     // swap(&m, &n);
     Reverse(a,sizeof(a)/sizeof(int));
+    return 0;
 }
