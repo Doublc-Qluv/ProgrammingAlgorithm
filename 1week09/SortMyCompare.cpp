@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cstdio>
+#include <stdlib.h>
+using namespace std;
+
+int MyCompare(const void * elem1, const void * elem2){
+    unsigned int *p1, *p2;
+    p1 = (unsigned int *)elem1;//直接复制会报非法
+    p2 = (unsigned int *)elem2;
+    return (* p1 % 10) - (* p2 % 10);
+}
+
+#define NUM 5
+int main(){
+    unsigned int an[NUM] = {8,123,11,10,4};
+    qsort(an, NUM, sizeof(unsigned int),MyCompare);
+    for(int i = 0;i < NUM; i++){
+        printf("%d ",an[i]);
+    }
+    //10 11 123 4 8
+    return 0;
+}
