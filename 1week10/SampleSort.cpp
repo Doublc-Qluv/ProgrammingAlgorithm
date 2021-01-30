@@ -3,7 +3,7 @@
 #include <cstring>
 #include <ctime>
 using namespace std;
-// #define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
 /*
 选择排序：
 如果按照从小到大排序，找到最小的放在第一位
@@ -23,9 +23,9 @@ void SelectionSort(int a[], int size){
         a[tMin] = tmp;
         #endif
         //或者提前定义swap函数
-        #ifdef SWAP
-        SWAP(list[i], list[min], temp);
-        #endif
+//        #ifdef SWAP
+//        SWAP(list[i], list[min], temp);
+//        #endif
     }
 }
 
@@ -53,25 +53,30 @@ void InsertionSort(int a[], int size){
 */
 
 void BubbleSort(int a[], int size){
+    int tmp;
     for(int i = size-1; i > 0; --i){//将未排序部分最大值移动到i的位置
         for(int j = 0; j < i; ++j){
             if(a[j] > a[j+1]){
-                int tmp = a[j];
-                a[j] = a[j+i];
-                a[j+1] = tmp;
+//                int tmp = a[j];
+//                a[j] = a[j+i];   //报错原因，步进到此无法完成复制，导致失败，原因未知，上同
+//                a[j+1] = tmp;
+                SWAP(a[j],a[j+1], tmp);
             }
         }
     }
 }
 
 void bubbleSort(int a[], int size){//先排出小的
+    int tmp;
     for(int i = 0; i < size-1; i++){
         for(int j = 0; j < size-i-1; j++){
             if(a[j] > a[j+1]){
-                int tmp = a[j];
-                a[j] = a[j+i];
+                tmp = a[j];
+                a[j] = a[j+i];//报错原因，步进到此无法完成复制，导致失败，原因未知，上同
                 a[j+1] = tmp;
             }
+//            if(a[j] > a[j+1])
+//                SWAP(a[j], a[j+1], tmp);
         }
     }
 }
@@ -83,10 +88,10 @@ int main(){
     int len = sizeof(b)/sizeof(int);
     // SelectionSort(a,size);
     // InsertionSort(a,size);
-    // BubbleSort(a,size);//报错，无法正确排序
-    bubbleSort(b,len);
-    for(int i = 0;i<len;i++)
-        cout<< b[i] <<",";
+    BubbleSort(a,size);//会报错，无法正确排序，前述
+    // bubbleSort(a,size);
+    for(int i = 0;i<size;i++)
+        cout<< a[i] <<",";
 
     cout << endl << "run:" << (double)clock()/CLOCKS_PER_SEC << "s";
 }
