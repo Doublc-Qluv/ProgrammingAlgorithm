@@ -53,8 +53,20 @@ void InsertionSort(int a[], int size){
 */
 
 void BubbleSort(int a[], int size){
-    for(int i = size-1; i > 0; i--){//将未排序部分最大值移动到i的位置
-        for(int j = 0; j < i; j++){
+    for(int i = size-1; i > 0; --i){//将未排序部分最大值移动到i的位置
+        for(int j = 0; j < i; ++j){
+            if(a[j] > a[j+1]){
+                int tmp = a[j];
+                a[j] = a[j+i];
+                a[j+1] = tmp;
+            }
+        }
+    }
+}
+
+void bubbleSort(int a[], int size){//先排出小的
+    for(int i = 0; i < size-1; i++){
+        for(int j = 0; j < size-i-1; j++){
             if(a[j] > a[j+1]){
                 int tmp = a[j];
                 a[j] = a[j+i];
@@ -66,12 +78,15 @@ void BubbleSort(int a[], int size){
 
 int main(){
     int a[] = {3,123,4325,653,125,43};
+    int b[] = {3,5,1,-7,4,9,-6,8,10,4};
     int size = sizeof(a)/sizeof(int);
+    int len = sizeof(b)/sizeof(int);
     // SelectionSort(a,size);
     // InsertionSort(a,size);
-    BubbleSort(a,size);//报错，无法正确排序
-    for(int i = 0;i<size;i++)
-        cout<< a[i] <<",";
+    // BubbleSort(a,size);//报错，无法正确排序
+    bubbleSort(b,len);
+    for(int i = 0;i<len;i++)
+        cout<< b[i] <<",";
 
     cout << endl << "run:" << (double)clock()/CLOCKS_PER_SEC << "s";
 }
