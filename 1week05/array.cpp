@@ -4,7 +4,7 @@ using namespace std;
 #define NUM 10
 int a[NUM];
 int main(){
-    freopen("/Users/doublc.qluv/git_repo/ProgrammingAlgorithm/1week05/num.txt","r",stdin);
+    freopen("./num.txt","r",stdin);
     for(int i = 0;i < NUM;i++){
         cin >> a[i];
     }

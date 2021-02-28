@@ -11,7 +11,7 @@ int b[ROWS][LOWS];
 int c[ROWS][LOWS];
 
 int main(){
-    freopen("/Users/doublc.qluv/git_repo/ProgrammingAlgorithm/1week05/matrix_in.txt","r",stdin);
+    freopen("./matrix_in.txt","r",stdin);
     
     int m,n,p,q;
     //matrix a
