@@ -1,64 +1,41 @@
 #include <iostream>
 #include <cstdio>
-#include <algorithm>
 #include <map>//使用multimap和map使用头文件
 
 using namespace std;
 
-struct StudentInfo
-{
-    int id;
-    char name[20];
-};
+//map与multimap的区别在于其不能有重复的元素，插入可能失败，可以用[]，下标点为关键字
 
-struct Student
-{
+struct Student {
+    string name;
     int score;
-    StudentInfo info;
 };
+Student students[5] = {
+    {"Jack",89},{"Tom",74},{"Cindy",87},{"Alysa",87},{"Micheal",98}};
 
-typedef multimap<int,StudentInfo> Map_Std;
-//使得Map_Std 等价于 multimap<int,StudentInfo>
-
+typedef map<string,int> MP;
 int main(){
-    Map_Std mp;
+    MP mp;
+    for(int i = 0;i < 5; ++i)
+        mp.insert(make_pair(students[i].name,students[i].score));
+    cout << mp["Jack"] << endl; // 输出 89
+    mp["Jack"] = 60; //修改名为"Jack"的元素的second
+    for(MP::iterator i = mp.begin(); i != mp.end(); ++i)
+        cout << "(" << i->first << "," << i->second << ") ";
+    //输出： (Alysa,87) (Cindy,87) (Jack,60) (Micheal,98) (Tom,74)
+    cout << endl;
     Student st;
-    char cmd[20];
-    while (cin >> cmd)
-    {
-        if (cmd[0] == 'A') {
-            cin >> st.info.name >> st.info.id >> st.score;
-            mp.insert(make_pair(st.score, st.info));//first = st.score  |  second = st.score
-        }
-        else if ( cmd[0] == 'Q')
-        {
-            int score;
-            cin >> score;
-            Map_Std::iterator p = mp.lower_bound(score);
-            if(p!=mp.begin()){
-                --p;
-                score = p->first;
-                Map_Std::iterator maxp = p;
-                int maxid = p->second.id;
-                for(;p!=mp.begin() && p->first == score;--p){//遍历所有与score相等的学生
-                    if(p->second.id > maxid){
-                        maxp = p;
-                        maxid = p->second.id;
-                    }
-                }
-                if(p->first == score){
-                    if(p->second.id > maxid){
-                        maxp = p;
-                        maxid = p->second.id;
-                    }
-                }
-                cout << maxp->second.name << " " << maxp->second.id << " " 
-                << maxp->first <<endl;
-            }
-            else cout << "Nobody" <<endl;
-        }
-    }
-
+    st.name = "Jack";
+    st.score = 99;
+    pair<MP::iterator, bool> p = mp.insert(make_pair(st.name,st.score));
+    if( p.second )
+        cout << "(" << p.first->first << ","
+        << p.first->second << ") inserted" <<endl;
+    else
+        cout << "insertion failed" << endl; //输出此信息
+    mp["Harry"] = 78; //插入一元素，其first为"Harry",然后将其second改为78
+    MP::iterator q = mp.find("Harry");
+    cout << "(" << q->first << "," << q->second <<")" <<endl;
+    //输出 (Harry,78)
     return 0;
-    
 }
