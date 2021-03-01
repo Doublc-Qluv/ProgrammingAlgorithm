@@ -6,13 +6,11 @@
 #include <stack>
 using namespace std;
 
-// #define N 1000
-
-
 const int N = 1000;
 int h[N+1];
+
 int main(){
-//    freopen("./03MaxRectangle.data","r",stdin);
+    freopen("./03MaxRectangle.data","r",stdin);
     int n, ans=0, area, temp;
     // 输入数据
     cin >> n;
