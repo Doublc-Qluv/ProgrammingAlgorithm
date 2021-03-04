@@ -28,11 +28,12 @@ int main(){
 			status[i][4] = (status[i - 1][4] * 2 + status[i - 1][2] + status[i - 1][1]) % mod;
 			status[i][5] = (status[i - 1][5] * 2 + status[i - 1][4] + status[i - 1][3]) % mod;
 		}
-/*		for(j=-1;++j<5;){
+		for(j=-1;++j<5;){
 			cout<<status[i][j]<<" ";
 		}
-		cout<<status[i][j]<<endl;*/
+		cout<<status[i][j]<<endl;
 	}
+    //结果
 	cout<<status[n][5]<<endl;
 	for(i=-1;++i<n+1;){
 		delete[]status[i];
