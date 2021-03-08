@@ -138,5 +138,5 @@ int main()
 
 
 
-// https://blog.csdn.net/qq_16234613/article/details/52388890 algo
+// https://blog.csdn.net/qq_16234613/article/details/52388890 algorithm
 // https://blog.csdn.net/qq_16234613/article/details/77482417 code source
